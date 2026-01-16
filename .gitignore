@@ -1,0 +1,19 @@
+# Dependencies
+/vendor/
+/composer.lock
+node_modules/
+
+# IDE and editor specific files
+/.idea/
+*.swp
+*.bak
+
+# Log files
+*.log
+/tests/*.log
+
+# Environment specific files
+.env
+
+# Operating system specific files
+.DS_Store
