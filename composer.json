@@ -1,7 +1,9 @@
 {
+  "name": "aung_tun/php-basics-challenge",
   "autoload": {
     "psr-4": {
       "App\\": "src/"
     }
-  }
+  },
+  "require": {}
 }
