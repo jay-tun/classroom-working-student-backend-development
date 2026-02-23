@@ -1,13 +1,18 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App;
 
 use App\Interfaces\Resettable;
 use App\Traits\CanLogin;
+use RuntimeException;
 
 class AdminUser extends UserBase implements Resettable
 {
     use CanLogin;
+
+    private ?string $password = null;
 
     public function getRole(): string
     {
@@ -26,8 +31,8 @@ class AdminUser extends UserBase implements Resettable
         // In a real system, this would trigger an email
         echo "Password reset for {$this->email}. New temporary password generated.\n";
     }
-    
-    // Only to test if resetPassword worked, not practical in real-life
+
+    // Only to test if resetPassword worked, not used in real systems
     public function getPassword(): ?string
     {
         return $this->password;

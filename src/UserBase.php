@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App;
 
@@ -12,12 +14,14 @@ abstract class UserBase
     public const ROLE_CUSTOMER = 'customer';
 
     protected static int $userCount = 0;
-
+    private string $id;
     protected string $name;
     protected string $email;
 
     public function __construct(string $name, string $email)
     {
+        // Simple unique ID for demo purposes
+        $this->id = uniqid('user_', true);
         $this->setEmail($email);
         $this->name = $name;
 
@@ -29,9 +33,19 @@ abstract class UserBase
         return self::$userCount;
     }
 
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function setName(string $name): void
+    {
+        $this->name = $name;
     }
 
     public function getEmail(): string
@@ -41,7 +55,8 @@ abstract class UserBase
 
     protected function setEmail(string $email): void
     {
-        if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        // Email setter with exception handling
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             throw new InvalidArgumentException('Invalid E-mail address!');
         }
 
